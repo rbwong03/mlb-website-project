@@ -68,7 +68,7 @@ export default defineComponent({
     const sortedByRank = ref(false);
     const sortedByStreak = ref(false);
 
-    const updateSortKeys = (teamsArray: any[], sortBy: any[]) => {
+    const updateSortKeys = (teamsArray: any[], sortBy: number | string) => {
       teamsArray.forEach((team, index) => {
         team[1].sortKey =
           sortBy === team.Rank ? index : teamsArray.length - index - 1;
@@ -77,7 +77,6 @@ export default defineComponent({
 
     const sortTeamsByRank = () => {
       sortedByRank.value = !sortedByRank.value;
-      // Ensure that sorting by streak is disabled when sorting by rank
       sortedByStreak.value = false;
 
       Object.values(divisionsData).forEach((division) => {
@@ -175,6 +174,7 @@ export default defineComponent({
             divisionsData[division].teams[teamName] = {
               games,
               gameToShow: null,
+              sortKey: 0,
             };
 
             allTeamsData[teamName].gameToShow = findGameToShow(
