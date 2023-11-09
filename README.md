@@ -15,7 +15,7 @@ corepack enable
 
 6. navigate to directory
 
-cd <path_to_project_repo>/src
+cd <path_to_project_repo>
 
 7. Install dependencies from package.json
 
