@@ -23,7 +23,7 @@ yarn install
 
 8. Run app in devlopment mode
 
-npm run dev
+npm run serve
 
 Open the link the previous command prints out in chrome.
 ```

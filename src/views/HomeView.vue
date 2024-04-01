@@ -1,5 +1,6 @@
 <template>
   <div class="division-rankings">
+    <!-- <pre>{{ JSON.stringify(divisionsData, null, 2) }}</pre> -->
     <h1>Division Rankings</h1>
     <div class="filters">
       <div class="date-filter">
@@ -54,6 +55,10 @@
 
 <script lang="ts">
 import { defineComponent, ref, reactive, watch, computed } from "vue";
+// These ref and reactive variables are what hold the state of the component.
+// So when a ref or reactive variable is changed by the User in some way,
+// all of the times that the references or reactives are used in the template
+// are then reevaluated to match the information that it is currently.
 import TeamCard from "@/components/UserCard.vue";
 import TeamGame from "@/types/TeamGame";
 
@@ -202,9 +207,19 @@ export default defineComponent({
       };
       return divisionTeamsMap[division] || [];
     }
-
+    // The watch function is used to execute the logic I need in response
+    // to the chnages in the reactive data or computed properties such as the year
+    // it monitors the variable and then triggers the functions whenever a watched variable
+    // changes which is good for dynamically importing the right data.
     watch(
       selectedDate,
+      // The async keyword means that this code is able to perform the operations
+      // that don’t complete immediately such as loading data. I don’t want to block
+      // the rest of my application while waiting for my data so that’s my understanding
+      // of what async does. And then what await does is that it pauses the function to wait
+      // until the loadgamedata completes and returns its result. Without the async or await,
+      // the application would have likely frozen or became unresponsive until the data is loaded.
+
       async (newDate) => {
         const newYear = newDate.split("-")[0];
 
